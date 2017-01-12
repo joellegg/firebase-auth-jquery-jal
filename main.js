@@ -69,7 +69,13 @@ $('#register').click((e) => {
 ////////////////////////////
 ////    to do list    //////
 ////////////////////////////
-$('.main-page form').submit(() => {
+$('.main-page form').submit((e) => {
+    e.preventDefault();
+
     let task = $('.main-page form input[type="text"]').val();
-    $.post
+    let uid = firebase.auth().currentUser.uid;
+    $.post(`https://c17-jquery-auth-4890f.firebaseio.com/${uid}.json`,
+        // second task is from the variable first is the key which is always a string
+        JSON.stringify({ task: task })
+    ).then(console.log)
 });
