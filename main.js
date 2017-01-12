@@ -23,7 +23,7 @@ firebase.auth().onAuthStateChanged(() => {
     }
 })
 
-$('form').submit((e) => {
+$('.form-signin').submit((e) => {
     e.preventDefault();
 
     let email = $('input[type="email"]').val();
@@ -36,4 +36,40 @@ $('form').submit((e) => {
             // reset the form to empty when you log out
             $('form')[0].reset();
         })
+});
+
+
+//////////////////////////////
+/////     sign out      //////
+//////////////////////////////
+$('.main-page > button').click(() =>
+    //console.log('clicked')
+    firebase.auth().signOut()
+);
+
+
+////////////////////////////
+////   add new user     ////
+////////////////////////////
+$('#register').click((e) => {
+    e.preventDefault();
+
+    let email = $('input[type="email"]').val();
+    let password = $('input[type="password"]').val();
+    //console.log('register me');
+    firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(() => {
+            // reset the form to empty when you log out
+            $('form')[0].reset();
+        });
+});
+
+////////////////////////////
+////    to do list    //////
+////////////////////////////
+$('.main-page form').submit(() => {
+    let task = $('.main-page form input[type="text"]').val();
+    $.post
 });

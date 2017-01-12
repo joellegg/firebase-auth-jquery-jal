@@ -1,3 +1,6 @@
 .form-signin {
     width: 40%;
 }
+.main-page > button {
+    width: 30%;
+}
